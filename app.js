@@ -112,7 +112,8 @@ function renderClips(){
     const composeBtn=document.createElement("button"); composeBtn.textContent="Compose"; composeBtn.addEventListener("click", ()=>{ if(c.composing) return; c.composing=true; renderClips(); compositionQueue.push(c); processCompositionQueue(); });
     actions.appendChild(editBtn);
     actions.appendChild(composeBtn);
-    actions.appendChild(dl); 
+    const dl=document.createElement("a"); dl.textContent="Download"; const href=c.blob?URL.createObjectURL(c.blob):(c.remoteUrl|| (c.rawBlob?URL.createObjectURL(c.rawBlob):'')); if(href){ dl.href=href; dl.download=`clip-${idx+1}.webm`; } else { dl.style.pointerEvents='none'; dl.style.opacity='0.5'; }
+    actions.appendChild(dl);
     const delBtn=document.createElement("button"); delBtn.textContent="Delete";
     delBtn.addEventListener("click", ()=>{
       if(!confirm("Are you sure you want to delete this clip?")) return;

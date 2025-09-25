@@ -69,7 +69,7 @@ function renderClips(){
     const card=document.createElement("div"); card.className="clip";
     const img=document.createElement("img"); img.className="thumb"; img.src=c.thumb || c.thumbUrl || ""; 
     img.addEventListener('click',()=>{ 
-      const src = c.blob ? URL.createObjectURL(c.blob) : (c.remoteUrl || "");
+      const src = c.blob ? URL.createObjectURL(c.blob) : (c.remoteUrl || (c.rawBlob ? URL.createObjectURL(c.rawBlob) : ""));
       if(src){ 
         els.modalVideo.src=src; 
         els.modalBackdrop.style.display='flex'; 
